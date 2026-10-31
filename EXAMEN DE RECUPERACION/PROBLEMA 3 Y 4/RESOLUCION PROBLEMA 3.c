@@ -1,32 +1,28 @@
 #include <stdio.h>
+#include <string.h>
 
-float calcular_promedio(float m1, float m2, float m3) {
-    return (m1 + m2 + m3) / 3.0;
-}
+int main(void) {
+    char s[1001], pila[1001];
+    int i, tope = 0, valido = 1;
 
-int contar_sobre_promedio(float m1, float m2, float m3, float promedio) {
-    int contador = 0;
-    if (m1 > promedio) contador++;
-    if (m2 > promedio) contador++;
-    if (m3 > promedio) contador++;
-    return contador;
-}
+    scanf("%1000s", s);
 
-int main() {
-    float m1, m2, m3;
+    for (i = 0; s[i] != '\0'; i++) {
+        if (s[i] == '(') {
+            pila[tope++] = '(';
+        } else if (s[i] == ')') {
+            if (tope == 0) {
+                valido = 0;
+                break;
+            }
+            tope--;
+        }
+    }
 
-    printf("Ingrese la primera medicion: ");
-    scanf("%f", &m1);
-    printf("Ingrese la segunda medicion: ");
-    scanf("%f", &m2);
-    printf("Ingrese la tercera medicion: ");
-    scanf("%f", &m3);
-
-    float prom = calcular_promedio(m1, m2, m3);
-    int sobre_prom = contar_sobre_promedio(m1, m2, m3, prom);
-
-    printf("\nPromedio de las mediciones: %.2f\n", prom);
-    printf("Mediciones por encima del promedio: %d\n", sobre_prom);
+    if (valido && tope == 0)
+        puts("BALANCEADO");
+    else
+        puts("NO BALANCEADO");
 
     return 0;
 }
