@@ -1,2 +1,0 @@
-# estructura-de-datos
-ejercicios
