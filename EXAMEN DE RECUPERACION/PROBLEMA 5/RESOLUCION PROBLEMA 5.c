@@ -1,32 +1,29 @@
 #include <stdio.h>
+#include <string.h>
 
-float calcular_promedio(float m1, float m2, float m3) {
-    return (m1 + m2 + m3) / 3.0;
-}
+int main(void) {
+    char nombre[10][40], pila[10][40];
+    int i, tope = 0;
 
-int contar_sobre_promedio(float m1, float m2, float m3, float promedio) {
-    int contador = 0;
-    if (m1 > promedio) contador++;
-    if (m2 > promedio) contador++;
-    if (m3 > promedio) contador++;
-    return contador;
-}
+    for (i = 0; i < 10; i++) {
+        scanf("%39s", nombre[i]);
 
-int main() {
-    float m1, m2, m3;
+        if (strcmp(nombre[i], "Santiago") != 0 &&
+            strcmp(nombre[i], "Pedro") != 0 &&
+            strcmp(nombre[i], "Ariadna") != 0 &&
+            strcmp(nombre[i], "Marco") != 0 &&
+            strcmp(nombre[i], "Juan") != 0 &&
+            strcmp(nombre[i], "Angel") != 0) {
 
-    printf("Ingrese la primera medicion: ");
-    scanf("%f", &m1);
-    printf("Ingrese la segunda medicion: ");
-    scanf("%f", &m2);
-    printf("Ingrese la tercera medicion: ");
-    scanf("%f", &m3);
+            strcpy(pila[tope++], nombre[i]);
+        }
+    }
 
-    float prom = calcular_promedio(m1, m2, m3);
-    int sobre_prom = contar_sobre_promedio(m1, m2, m3, prom);
+    printf("%d\n", tope);
 
-    printf("\nPromedio de las mediciones: %.2f\n", prom);
-    printf("Mediciones por encima del promedio: %d\n", sobre_prom);
+    while (tope > 0) {
+        puts(pila[--tope]);
+    }
 
     return 0;
 }
