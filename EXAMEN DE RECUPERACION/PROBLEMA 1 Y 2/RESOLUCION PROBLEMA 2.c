@@ -1,32 +1,21 @@
 #include <stdio.h>
 
-float calcular_promedio(float m1, float m2, float m3) {
-    return (m1 + m2 + m3) / 3.0;
-}
+int main(void) {
+    int n, x, i, ns = 0, eo = 0;
 
-int contar_sobre_promedio(float m1, float m2, float m3, float promedio) {
-    int contador = 0;
-    if (m1 > promedio) contador++;
-    if (m2 > promedio) contador++;
-    if (m3 > promedio) contador++;
-    return contador;
-}
+    scanf("%d", &n);
 
-int main() {
-    float m1, m2, m3;
+    for (i = 0; i < n; i++) {
+        scanf("%d", &x);
 
-    printf("Ingrese la primera medicion: ");
-    scanf("%f", &m1);
-    printf("Ingrese la segunda medicion: ");
-    scanf("%f", &m2);
-    printf("Ingrese la tercera medicion: ");
-    scanf("%f", &m3);
+        if (x == 1) {
+            ns++;
+        } else if (x == 2) {
+            eo++;
+        }
+    }
 
-    float prom = calcular_promedio(m1, m2, m3);
-    int sobre_prom = contar_sobre_promedio(m1, m2, m3, prom);
-
-    printf("\nPromedio de las mediciones: %.2f\n", prom);
-    printf("Mediciones por encima del promedio: %d\n", sobre_prom);
+    printf("%d %d\n", ns, eo);
 
     return 0;
 }
